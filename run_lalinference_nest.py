@@ -42,7 +42,7 @@ commands = {
   '--L1-channel': 'L1:LOSC-STRAIN', # strain channel in frame
   '--srate': '4096', # sample rate
   # prior ranges
-  '--dt': '0.025', # range around trigger time for tc
+  '--dt': '0.2', # range around trigger time for tc
   '--distance-min': '10',  # minimum distance
   '--distance-max': '100', # maximum distance
   # Nested sampling parameters
