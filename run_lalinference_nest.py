@@ -61,7 +61,7 @@ commands = {
   '--fix-rightascension': '3.446157844',
   '--fix-declination': '-0.4080841591',
   '--fix-phase': '2.60174675393',
-  '--fix-costheta_jn': '{}'.format(np.cos(2.74719229269)), # cos(theta_jn)
+  #'--fix-costheta_jn': '{}'.format(np.cos(2.74719229269)), # cos(theta_jn)
   '--fix-a_spin1': '0.264813928565',
   '--fix-a_spin2': '0.702414508316',
   '--fix-tilt_spin1': '2.58869030589',
@@ -85,3 +85,23 @@ err, out = p.communicate()
 
 print(out)
 print(err)
+
+lppn2p = '/home/matthew/.local/share/virtualenvs/master-aVPqGZEW/bin/lalapps_nest2pos'
+
+n2pcommand = [lppn2p]
+n2pcommand.append('-p')
+n2pcommand.append(os.path.join(os.getcwd(), 'posterior.hdf'))
+n2pcommand.append(os.path.join(os.getcwd(), 'results.hdf'))
+
+p = sp.Popen(' '.join(n2pcommand), stdout=sp.PIPE, stderr=sp.PIPE, shell=True)
+err, out = p.communicate()
+
+# get posterior samples
+from lalinference.bayespputils import Posterior, PEOutputParser
+
+peparser = PEOutputParser('hdf5')
+res = peparser.parse(os.path.join(os.getcwd(), 'posterior.hdf'))
+pos = Posterior( res, SimInspiralTableEntry=None )
+
+dist = pos['dist'].samples
+time = pos['time'].samples
