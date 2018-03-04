@@ -34,7 +34,7 @@ commands = {
   '--psdlength': '2048',      # use all of the frame data for PSD estimation
   '--seglen': '106.66666666666667',          # average 106.666666666666 second chunks of data
   # trigger info
-  '--trigtime': '{}'.format(1187007040.0+1842.43), # time of trigger (data segment for analysing will start seglen-2 second before this time)
+  '--trigtime': '1187008882.4457', # time of trigger (data segment for analysing will start seglen-2 second before this time)
   '--L1-flow': '24', # start at 24 Hz
   '--L1-fhigh': '400', # go up to 400 Hz
   # frame data
